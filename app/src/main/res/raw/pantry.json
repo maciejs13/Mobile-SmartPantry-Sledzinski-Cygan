@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "nazwa": "Tlen",
+    "ilosc": 500,
+    "jednostka": "l",
+    "kategoria": "Podtrzymywanie życia"
+  },
+  {
+    "id": 2,
+    "nazwa": "Woda pitna",
+    "ilosc": 200,
+    "jednostka": "l",
+    "kategoria": "Podtrzymywanie życia"
+  },
+  {
+    "id": 3,
+    "nazwa": "Paliwo rakietowe",
+    "ilosc": 1000,
+    "jednostka": "kg",
+    "kategoria": "Napęd"
+  },
+  {
+    "id": 4,
+    "nazwa": "Zestaw naprawczy",
+    "ilosc": 5,
+    "jednostka": "szt",
+    "kategoria": "Serwis"
+  }
+]
