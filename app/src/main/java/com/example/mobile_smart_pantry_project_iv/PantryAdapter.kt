@@ -1,30 +1,44 @@
 package com.example.mobile_smart_pantry_project_iv
 
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.example.mobile_smart_pantry_project_iv.databinding.ItemProductBinding
+import android.widget.ArrayAdapter
+import android.widget.TextView
 
 class PantryAdapter(
-    private val products: List<Product>
-) : RecyclerView.Adapter<PantryAdapter.ViewHolder>() {
+    context: Context,
+    val products: MutableList<Product>
+) : ArrayAdapter<Product>(context, 0, products) {
 
-    class ViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
+    private var _selectedPosition = -1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemProductBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return ViewHolder(binding)
-    }
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val itemView = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.item_product, parent, false)
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
-        holder.binding.productName.text = product.nazwa
-        holder.binding.productAmount.text = "${product.ilosc} ${product.jednostka}"
+
+        val nameText = itemView.findViewById<TextView>(R.id.productName)
+        val amountText = itemView.findViewById<TextView>(R.id.productAmount)
+
+        nameText.text = product.nazwa
+        amountText.text = "${product.ilosc} ${product.jednostka}"
+
+        val backgroundColor = if (product.ilosc < 6) {
+            Color.RED
+        }  else {
+            Color.TRANSPARENT
+        }
+        itemView.setBackgroundColor(backgroundColor)
+
+        return itemView
     }
 
-    override fun getItemCount() = products.size
+    fun setSelectedPosition(position: Int) {
+        _selectedPosition = position
+        notifyDataSetChanged()
+    }
 }
