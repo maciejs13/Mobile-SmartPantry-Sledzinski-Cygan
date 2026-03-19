@@ -3,6 +3,7 @@ package com.example.mobile_smart_pantry_project_iv
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.example.mobile_smart_pantry_project_iv.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,20 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.recyclerViewProducts.adapter = adapter
+
+
+        binding.editTextSearch.addTextChangedListener { text ->
+            val query = text.toString().lowercase()
+
+            val filtered = allProducts.filter {
+                it.nazwa.lowercase().contains(query)
+            }
+
+            products.clear()
+            products.addAll(filtered)
+            adapter.notifyDataSetChanged()
+        }
+
 
         binding.recyclerViewProducts.setOnItemClickListener { _, _, position, _ ->
             selectedProductIndex = position

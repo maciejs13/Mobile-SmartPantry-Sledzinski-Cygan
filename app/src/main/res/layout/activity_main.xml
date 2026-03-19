@@ -16,6 +16,14 @@
         android:padding="16dp"
         android:layout_margin="50dp"/>
 
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Szukaj produktu"
+        android:padding="8dp"
+        android:inputType="text"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,14 +58,14 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Rosnąco"/>
+            android:text="Malejąco"/>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Malejąco"/>
+            android:text="Rosnąco"/>
     </LinearLayout>
 
     <ListView
