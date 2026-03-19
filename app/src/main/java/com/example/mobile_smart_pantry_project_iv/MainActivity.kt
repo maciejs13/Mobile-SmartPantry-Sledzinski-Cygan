@@ -7,16 +7,24 @@ import com.example.mobile_smart_pantry_project_iv.databinding.ActivityMainBindin
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var products: MutableList<Product>
+    private lateinit var allProducts: MutableList<Product>
+    private lateinit var adapter: PantryAdapter
+
     private lateinit var binding: ActivityMainBinding
     private var selectedProductIndex: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        allProducts = loadProducts(this).toMutableList()
+        products = allProducts.toMutableList()
+        adapter = PantryAdapter(this, products)
+
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val products = loadProducts(this).toMutableList()
-        val adapter = PantryAdapter(this, products)
 
         binding.recyclerViewProducts.adapter = adapter
 
@@ -42,6 +50,20 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+
+        binding.button1.setOnClickListener {
+            products.sortByDescending { it.ilosc }
+            adapter.notifyDataSetChanged()
+        }
+
+        binding.button2.setOnClickListener {
+            products.sortBy { it.ilosc }
+            adapter.notifyDataSetChanged()
+        }
+
+
+
     }
 }
 
